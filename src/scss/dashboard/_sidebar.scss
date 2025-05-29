@@ -1,0 +1,110 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.sidebar{
+    opacity: 0;
+    background-color: v.$indigo;
+    height: 0;
+    overflow: hidden;
+    transition-property: opacity;
+    transition-duration: 500ms;
+    
+    @include m.tablet{
+        height: 100%;
+        opacity: 1;
+        padding: 2rem;
+        background-color: v.$indigo;
+    }
+
+    .contenedor-sidebar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1{
+            color: v.$blanco;
+            margin: 0;
+            font-size: 3rem;
+           
+        }
+        .cerrar-menu{
+            display: flex;
+            justify-content: center;
+            &:hover{
+                cursor: pointer;
+            }
+            @include m.tablet{
+                display: none;
+            }
+            
+        }
+
+    }
+
+    &.mostrar{
+        padding: 3rem;
+        opacity: 1;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;  
+        background-color: rgba($color: #000000, $alpha: 90%) ;
+        @include m.tablet{
+            display: none;
+        }
+     }
+
+     &.ocultar{
+        opacity: 0;
+     }
+
+    h2{
+        color: v.$blanco;
+        margin: 0;
+        text-align: center;
+
+    }
+
+    .sidebar-nav{
+        margin-top: 5rem;
+      
+        a{
+            color: v.$blanco;
+            display: block;
+            margin-bottom: 2rem;
+            padding: .7rem;
+            transition-property: background-color;
+            transition-duration: 300ms;
+            font-size: 2.4rem;
+            text-align: center;
+            
+            &:hover,
+            &.activo{
+                background-color: darken($color: v.$indigo, $amount: 20%);
+                border-radius: .5rem;
+                font-weight: bold;
+            }
+
+            @include m.tablet{
+                   font-size: 1.6rem; 
+                   margin-bottom: 1.2rem;
+                   text-align: left;
+            }
+        }
+    }
+
+    .cerrar-sesion-mobile{
+        margin-top: 4rem;
+
+        .cerrar-sesion{
+            @include m.boton(v.$indigo, v.$blanco)
+        }
+
+        @include m.tablet{
+            display: none;
+        }
+    }
+}
